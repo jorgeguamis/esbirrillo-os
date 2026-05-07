@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Helios Approval Item",
+  "description": "Pending approval item. It records a proposed action but never executes it.",
+  "type": "object",
+  "required": ["owner_agent", "permission_level", "action_type", "proposed_action", "why_it_matters", "risk"],
+  "properties": {
+    "approval_id": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "source": {"type": "string"},
+    "owner_agent": {"type": "string"},
+    "permission_level": {"type": "string", "enum": ["L2", "L3", "L4"]},
+    "action_type": {"type": "string"},
+    "proposed_action": {"type": "string", "minLength": 5},
+    "why_it_matters": {"type": "string", "minLength": 5},
+    "risk": {"type": "string", "minLength": 5},
+    "rollback_or_safe_alternative": {"type": "string"},
+    "approval_options": {"type": "array", "items": {"type": "string"}},
+    "related_files": {"type": "array", "items": {"type": "string"}},
+    "deadline": {"type": ["string", "null"]},
+    "status": {"type": "string", "enum": ["pending", "approved", "rejected", "edited", "expired"], "default": "pending"},
+    "notes": {"type": ["string", "null"]}
+  }
+}

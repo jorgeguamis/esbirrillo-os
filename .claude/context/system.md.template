@@ -1,0 +1,136 @@
+# System Context — Life OS
+
+> Memoria compartida del sistema. Leer antes de cualquier tarea de orquestación.
+
+---
+
+## Equipo de Agentes
+
+### Core (universales, vienen con el kit)
+
+| Agente | Archivo | Rol |
+|--------|---------|-----|
+| **Esbirrillo** | `esbirrillo.md` | Orquestador principal. Inbox, coordinación, tareas rápidas. |
+| **Librarian** | `librarian.md` | Conocimiento. Capturas, atomic notes, conexiones, lecturas. |
+| **Techy** | `techy.md` | Sistema. Config, scripts, automatizaciones, troubleshooting. |
+| **Reviewer** | `reviewer.md` | Coach/accountability. Patterns, reviews, decisiones difíciles. |
+
+### Dominio (creados por `/setup-wizard` Capa 4)
+
+Cada usuario tiene agentes propios construidos a partir de su rol y negocios. Ejemplos de agentes que `/setup-wizard create-my-agent` puede crear según el perfil:
+
+- Agente CEO de un negocio específico (pipeline, equipo, métricas, fundraising)
+- Agente Producto (roadmap, release, métricas producto)
+- Agente Finanzas (gastos, facturas, cashflow, inversiones)
+- Agente Copy (escritura comercial con la voz del usuario)
+- Agente Comunidad (community management si aplica)
+
+Lista actual de agentes de dominio del usuario: rellenada al instalar.
+
+```
+{{USER_DOMAIN_AGENTS}}
+```
+
+### Utility (vault-specific)
+
+- `connections-agent.md` — Conexiones entre notas Obsidian (si aplica)
+- `tagging-agent.md` — Tags y taxonomía del vault
+- `validate-frontmatter.md` — Validación de frontmatter
+
+---
+
+## Delegation Matrix
+
+Si llega algo fuera de scope al `esbirrillo`, derivar a:
+
+| Categoría | Agente |
+|-----------|--------|
+| Conocimiento, aprendizaje, conexiones | **Librarian** |
+| Sistema, config, scripts, automatización | **Techy** |
+| Accountability, patrones, decisiones difíciles | **Reviewer** |
+| Negocio/dominio específico | Agente de dominio creado en Capa 4 |
+| Tareas operativas rápidas (<2 min) | Directo (`esbirrillo`) |
+
+---
+
+## Sobre el usuario
+
+> Esta sección la rellena `/setup-wizard extract-identity`.
+
+```
+Nombre:    {{USER_NAME}}
+Idioma:    {{USER_LANGUAGE}}
+Base:      {{USER_LOCATION}}
+Rol(es):   {{USER_ROLES}}
+Negocios:  {{USER_BUSINESSES}}
+Norte:     {{USER_NORTH_STAR_SUMMARY}}
+Valores:   {{USER_VALUES}}
+Perfil:    {{USER_PERSONALITY}}
+Autonomía: {{USER_AUTONOMY_PREF}}
+```
+
+---
+
+## Patrones del usuario
+
+> Rellenado por `/setup-wizard`. Cada patrón con trigger / verdad / antídoto.
+
+```
+{{USER_PATTERNS}}
+```
+
+---
+
+## Stack Técnico
+
+```
+PENSAR (Vault) ←→ AUTOMATIZAR (Claude Code + Hermes-agent) ←→ ARCHIVAR (cloud sync)
+                            ↑
+                      HACER (Notion)
+```
+
+### DOE Framework (Directive-Orchestration-Execution)
+
+```
+Directive (Skills)  →  Orchestration (Agents)  →  Execution (Scripts)
+.claude/skills/        .claude/agents/             .claude/execution/
+  SKILL.md               {agent}.md                  {accion}_{servicio}.py
+  Qué hacer              Quién lo hace               Código determinístico
+```
+
+- **Self-annealing:** Cada skill tiene "Known Issues & Learnings" — errores → mejoras.
+- **Meta-workflows:** Skills que encadenan skills atómicos con checkpoints humanos.
+- **Execution scripts:** Operaciones determinísticas contra APIs, invocadas por skills.
+
+| Capa | Herramienta | Rol |
+|------|------------|-----|
+| IA interactiva | Claude Code | Skills on-demand, deep work, terminal |
+| IA autónoma | Hermes-agent (Nous Research) | Crons, Telegram, background |
+| Productividad | Notion | CRM, Tasks, Finance, Habits |
+| Conocimiento | Obsidian (opcional) | Daily notes, frameworks, atomic notes |
+| Calendario | Google Calendar | Cuentas configurables |
+| Transcripciones | Fireflies | Reuniones |
+| Comunicación | Telegram (Discord/Slack opcional) | Capa conversacional |
+| Storage | Cloud sync (Drive/iCloud) | Backups |
+
+---
+
+## North Star
+
+> Rellenado por `/setup-wizard frameworks-walkthrough`.
+
+- **1 año:** {{USER_NORTH_STAR_1Y}}
+- **3 años:** {{USER_NORTH_STAR_3Y}}
+- **10 años:** {{USER_NORTH_STAR_10Y}}
+
+---
+
+## Notion DBs
+
+> Rellenado por `/setup-wizard connect-tools` cuando crea/conecta DBs en el workspace del usuario.
+
+Ver `.claude/context/notion-registry.md` para el registro completo.
+
+```
+{{USER_NOTION_DB_SUMMARY}}
+```

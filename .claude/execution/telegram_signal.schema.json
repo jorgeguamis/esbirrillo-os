@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Helios Telegram Signal",
+  "description": "Structured Telegram context signal for Selenia. Not a raw chat log.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["owner_agent", "signal_type", "summary"],
+  "properties": {
+    "signal_id": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "source": {"const": "telegram"},
+    "owner_agent": {
+      "type": "string",
+      "enum": ["esbirrillo", "stark", "revo", "penny", "many", "dots", "jorge", "selenia", "unknown"]
+    },
+    "chat_ref": {
+      "type": "string",
+      "description": "Redacted chat alias, never raw private identifiers unless explicitly safe."
+    },
+    "signal_type": {
+      "type": "string",
+      "enum": [
+        "decision",
+        "design_decision",
+        "priority_change",
+        "commitment",
+        "task",
+        "lead_update",
+        "client_update",
+        "finance_signal",
+        "system_error",
+        "blocker",
+        "idea",
+        "energy_signal",
+        "meeting_signal",
+        "approval_candidate",
+        "other"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 800,
+      "description": "Compact operational summary. Do not paste raw chat."
+    },
+    "suggested_destination": {
+      "type": ["string", "null"],
+      "description": "Where this signal should eventually live: Notion CRM, Life OS, working-memory, etc."
+    },
+    "sensitivity": {
+      "type": "string",
+      "enum": ["low", "normal", "sensitive"],
+      "default": "normal"
+    },
+    "requires_approval": {
+      "type": "boolean",
+      "default": false
+    },
+    "next_action": {
+      "type": ["string", "null"]
+    },
+    "evidence_ref": {
+      "type": ["string", "null"],
+      "description": "Optional safe reference to the originating chat/session, not the raw content."
+    }
+  }
+}

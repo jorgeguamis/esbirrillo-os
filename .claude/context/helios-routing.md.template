@@ -1,0 +1,315 @@
+# Helios Routing — Hermes Orchestration Protocol
+
+> Capa de orquestación para Jorge. Define cómo Hermes decide si responde directo, usa skill, delega a subagente, llama Claude Code o deja algo para Selenia.
+
+## Principio base
+
+Jorge habla con Hermes/Esbirrillo. Hermes enruta.
+
+No dividir por “técnico vs no técnico”. Dividir por tipo de trabajo:
+
+- **Respuesta / decisión / síntesis rápida** → Hermes directo.
+- **Trabajo profundo sobre workspace/materiales** → Claude Code.
+- **Criterio especializado** → subagente de dominio.
+- **Revisión/aprendizaje/mantenimiento recurrente** → Selenia.
+
+---
+
+## Capas
+
+### Kairos — interfaz
+
+Canales:
+
+- CLI Hermes
+- Telegram DM Esbirrillo
+- Grupos Telegram de agentes
+- Comandos `.claude/commands/`
+- Fireflies como input de reuniones
+- Cron jobs futuros
+
+Responsabilidad:
+
+- Capturar intención.
+- Leer contexto mínimo.
+- Responder o escalar.
+- Proteger foco de Jorge.
+
+### Helios — routing/orquestación
+
+Responsabilidad:
+
+- Clasificar intención.
+- Seleccionar contexto.
+- Seleccionar agente/skill/herramienta.
+- Aplicar permisos.
+- Verificar resultado.
+- Registrar ejecuciones relevantes.
+
+### Selenia — sueño/revisión/aprendizaje
+
+Responsabilidad:
+
+- Revisar logs del día.
+- Revisar transcripciones/resúmenes de conversaciones con IA cuando estén disponibles.
+- Detectar correcciones explícitas de Jorge a los agentes: “no era eso”, “hazlo así”, “esto falla”, “prefiero X”.
+- Revisar contexto surgido en Telegram.
+- Detectar errores, fricciones y huecos.
+- Detectar reuniones Fireflies no procesadas.
+- Proponer mejoras a skills/agentes/contexto.
+- Crear items de approval cuando una mejora toque comportamiento sensible.
+- Generar informe en Life OS.
+
+MVP: Selenia propone y prioriza; no modifica memoria/skills ni envía mensajes sin permiso explícito.
+
+Evolución deseada: Selenia debe convertirse en el loop de mejora del sistema. Lee trazas, logs, correcciones y outputs malos; extrae aprendizajes; propone o aplica mejoras L1 recuperables en skills/agentes/contexto; y deja cambios L2-L4 en approval queue.
+
+---
+
+## Router principal
+
+MVP implementado como recomendador, no como gate obligatorio:
+
+- Script: `/Users/jorgeguamis/Desktop/.claude/execution/route_task.py`
+- Reglas: `/Users/jorgeguamis/Desktop/.claude/execution/routing_rules.json`
+- Comando: `/Users/jorgeguamis/Desktop/.claude/commands/route-task.md`
+
+Uso rápido:
+
+```bash
+python3 /Users/jorgeguamis/Desktop/.claude/execution/route_task.py "tarea de Jorge"
+```
+
+El output recomienda `recommended_route`, `permission_level`, `requires_confirmation`, `context_pack` y `next_step`.
+
+| Input / intención | Ruta por defecto | Contexto mínimo | Permiso |
+|---|---|---|---|
+| Pregunta simple | Hermes directo | Ninguno o 1 fuente | L0 |
+| Prioridades del día | Hermes + Jorge/Stark/Revo/Penny si aplica | working-memory + calendarios/context files | L0-L1 |
+| Pipeline/lead/propuesta 360 | Stark | working-memory + 360 Consulting + CRM/Fireflies del lead | L0-L3 |
+| Copy/email/follow-up | Shakes + Stark | contexto cliente + objetivo comercial | L1, envío L3 |
+| Revolutia/clases/Circle | Revo | working-memory + Revolutia + Calendar/Circle | L0-L3 |
+| Finanzas/gastos/facturas | Penny | working-memory + finance context + Notion finance | L0-L3 |
+| Sistema/config/scripts | Many o Claude Code | system.md + tools.md + repo context | L1-L4 |
+| Research/aprendizaje/notas | Dots | temas activos + notas relevantes | L0-L1 |
+| Accountability/decisión difícil | Jorge agent | Personal + reviews recientes + working-memory | L0-L1 |
+| Procesar reunión | meeting-processor + agente dueño | transcript + context file dominio | L1-L3 |
+| Trabajo largo multiarchivo | Claude Code | paths exactos + objetivo + constraints | L1-L4 |
+| Revisión nocturna | Selenia | logs + Telegram context + Fireflies + working-memory | L0-L1 |
+
+---
+
+## Cuándo usar Hermes directo
+
+Usar si:
+
+- Se resuelve en 2-5 minutos.
+- Solo requiere leer poca información.
+- El output es una respuesta, criterio, resumen o borrador corto.
+- No toca sistemas externos.
+- No exige verificación compleja.
+
+Ejemplos:
+
+- “¿Qué hago ahora?”
+- “¿Qué le contesto a Javi?”
+- “Resume esta nota.”
+- “Dame siguiente acción física.”
+
+---
+
+## Cuándo usar Claude Code
+
+Claude Code es operador profundo, no solo programador ni solo “trabajo profundo sobre el sistema”. Es el worker para **trabajo profundo a secas**.
+
+Usar si:
+
+- La tarea requiere varias rondas o trabajo autónomo.
+- Hay que producir un entregable completo, no solo responder.
+- Hay que leer/editar muchos archivos o materiales.
+- Hay que construir artefactos largos: SOPs, propuestas, skills, scripts, docs, clases, playbooks, investigaciones, análisis de reuniones.
+- Hay que auditar/reorganizar carpetas, sistemas o materiales de negocio.
+- Hay que ejecutar tests, verificaciones o comprobaciones con herramientas.
+- La tarea tiene suficiente complejidad como para que Hermes solo deba orquestar y verificar.
+
+Ejemplos:
+
+- “Construye Selenia MVP.”
+- “Crea una propuesta completa a partir de 3 reuniones.”
+- “Prepara un módulo entero de Revolutia a partir de notas, transcripciones y estructura previa.”
+- “Analiza estas llamadas y saca roadmap, riesgos y próximos pasos.”
+- “Audita mis skills y detecta huecos.”
+- “Crea scripts para Fireflies/logs.”
+
+---
+
+## Cuándo usar subagentes
+
+Usar si:
+
+- Hace falta criterio especializado.
+- Se quieren varias perspectivas.
+- El contexto puede aislarse.
+- El output de cada agente es acotado.
+
+Regla:
+
+- Stark decide estrategia comercial.
+- Shakes redacta copy.
+- Penny valida dinero/facturación.
+- Revo gestiona Revolutia.
+- Many mantiene sistema/automatización.
+- Dots conecta conocimiento.
+- Jorge confronta patrones y foco.
+
+---
+
+## Telegram como fuente para Selenia
+
+Telegram es una fuente de contexto central porque ahí Jorge deja señales operativas en tiempo real.
+
+Selenia debe considerar Telegram en tres niveles:
+
+### Nivel A — Contexto conversacional
+
+Señales útiles:
+
+- decisiones tomadas por Jorge
+- cambios de prioridad
+- compromisos prometidos
+- tareas mencionadas informalmente
+- fricciones/errores reportados
+- información nueva de leads/clientes
+- señales de procrastinación o bloqueo
+
+### Nivel B — Routing por grupo/agente
+
+Cada grupo de Telegram ya tiene agente propietario:
+
+- DM Esbirrillo → orquestación general
+- Stark → 360/pipeline/ventas
+- Revo → Revolutia
+- Many → sistema/técnico
+- Dots → conocimiento
+- Penny → finanzas
+- Jorge → accountability
+
+Selenia debe leer logs/resúmenes de lo ocurrido por agente/grupo, no necesariamente volcar conversaciones completas.
+
+### Nivel C — Canal de entrega/aprobación futuro
+
+MVP:
+
+- Selenia escribe informe en Life OS.
+- No envía Telegram automáticamente salvo cron explícito aprobado.
+
+Futuro:
+
+- Enviar resumen corto a Telegram.
+- Crear approval queue.
+- Permitir respuestas tipo “aprueba 1 y 3”.
+
+---
+
+## Permisos rápidos
+
+| Nivel | Tipo | Ejemplos | Confirmación |
+|---|---|---|---|
+| L0 | Leer/analizar | leer contexto, resumir, buscar | No |
+| L1 | Escritura interna recuperable | notas, logs, borradores | No, log si relevante |
+| L2 | Update operativo reversible | CRM/tareas/finanzas con datos claros | Si ambiguo |
+| L3 | Comunicación/acción externa sensible | email, publicar, factura enviada, API externa | Sí |
+| L4 | Irreversible/crítico | borrar, deploy, pagos, secretos, masivo | Sí + impacto + rollback |
+
+---
+
+## Context packs mínimos
+
+### 360 / Stark
+
+- `~/.claude/memory/working-memory.md`
+- `Life OS/02. Areas/business_360/360 Consulting.md`
+- CRM/Notion si aplica
+- Fireflies/notas del lead si aplica
+- Client Journey Playbook si fase importa
+
+### Revolutia / Revo
+
+- working-memory sección Revo
+- `business_revolutia/Revolutia.md`
+- Calendar/Circle si aplica
+- clase/campaña/estudiante relevante
+
+### Finanzas / Penny
+
+- working-memory sección Penny
+- finance context
+- Notion finance DBs si aplica
+- reglas de facturación
+
+### Personal / Jorge
+
+- working-memory sección Jorge
+- `personal/Personal.md`
+- últimas daily/weekly reviews si la decisión lo requiere
+
+### Sistema / Many
+
+- `~/Desktop/CLAUDE.md`
+- `.claude/context/system.md`
+- `.claude/context/tools.md`
+- repo-specific CLAUDE.md/AGENTS.md
+- constraints
+
+### Selenia
+
+- logs JSONL del día
+- working-memory
+- telegram-routing
+- resúmenes/logs de Telegram por agente si están disponibles
+- Fireflies meetings recientes
+- skills/agentes tocados
+- Selenia reports previos
+
+---
+
+## Verificación antes de decir “hecho”
+
+- Archivo creado/modificado → leer o stat del path.
+- Script ejecutado → exit code 0 + output esperado.
+- Notion/CRM update → fetch o confirmar respuesta API.
+- Fireflies procesado → transcript/summary guardado + nota procesada.
+- Claude Code ejecutado → revisar output y archivos tocados.
+- Selenia report → comprobar archivo y secciones.
+
+---
+
+## Logging obligatorio
+
+Loguear cuando haya:
+
+- escritura en Life OS
+- escritura en `.claude`
+- cambios de Notion/CRM/finanzas
+- Fireflies procesado
+- subagente/Claude Code usado para una tarea relevante
+- error o retry
+- decisión de permisos
+- acción pendiente de aprobación
+
+No loguear:
+
+- secretos/API keys
+- contenido completo de conversaciones privadas salvo que sea necesario
+- transcripciones completas dentro del log
+- datos sensibles innecesarios
+
+---
+
+## MVP stance
+
+- Routing como recomendador, no gate obligatorio.
+- Selenia manual antes de cron.
+- Telegram como fuente de contexto, no spam channel.
+- Selenia propone, no aplica cambios críticos.
+- Fireflies bajo demanda antes de automático.

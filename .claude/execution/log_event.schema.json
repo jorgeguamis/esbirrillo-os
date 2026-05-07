@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Helios/Selenia Execution Log Event",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["actor", "source", "objective", "result"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique event id. Generated if missing."
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO-8601 timestamp. Generated if missing."
+    },
+    "actor": {
+      "type": "string",
+      "description": "Who performed or coordinated the action: hermes, claude-code, esbirrillo, stark, selenia, many, etc."
+    },
+    "source": {
+      "type": "string",
+      "description": "Where the request/event came from: cli, telegram, cron, fireflies, manual, claude-code, system."
+    },
+    "objective": {
+      "type": "string",
+      "description": "What this execution attempted to accomplish."
+    },
+    "route": {
+      "type": "string",
+      "description": "Routing decision: hermes_direct, claude_code, subagent, skill, cron, selenia, script."
+    },
+    "skill": {
+      "type": ["string", "null"],
+      "description": "Skill used, if any."
+    },
+    "agent": {
+      "type": ["string", "null"],
+      "description": "Agent/subagent owner, if any."
+    },
+    "tools_used": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "context_used": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "files_read": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "files_modified": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "external_writes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "External side effects: notion, email, telegram, crm, calendar, etc."
+    },
+    "user_confirmation": {
+      "type": ["boolean", "string", "null"],
+      "description": "Whether {{USER_FIRSTNAME}} confirmed the action, or confirmation note."
+    },
+    "permission_level": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3", "L4", "unknown"]
+    },
+    "result": {
+      "type": "string",
+      "description": "Short result summary. No secrets or raw dumps."
+    },
+    "errors": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "next_action": {
+      "type": ["string", "null"],
+      "description": "Suggested next action or pending approval."
+    },
+    "telegram_context": {
+      "type": ["object", "null"],
+      "description": "Optional summarized Telegram signal metadata, never raw full dumps by default.",
+      "additionalProperties": true,
+      "properties": {
+        "chat_agent": {"type": ["string", "null"]},
+        "chat_id_redacted": {"type": ["string", "null"]},
+        "signal_type": {"type": ["string", "null"]},
+        "signal_summary": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

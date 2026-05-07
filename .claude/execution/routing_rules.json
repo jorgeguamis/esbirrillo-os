@@ -1,0 +1,75 @@
+{
+  "version": "0.2.0",
+  "mode": "recommender_not_gate",
+  "default_route": "hermes_direct",
+  "permission_levels": {
+    "L0": "Read/analyze",
+    "L1": "Internal recoverable write",
+    "L2": "Reversible operational update",
+    "L3": "Sensitive external action",
+    "L4": "Irreversible/critical"
+  },
+  "_note": "Domain routes (e.g. business-specific agents) are added by /setup-wizard create-my-agent based on the user's businesses. The routes below are the universal core routes. Keywords for domain routes are filled when those agents are created.",
+  "routes": [
+    {
+      "route": "claude_code",
+      "owner": "Claude Code",
+      "permission": "L1",
+      "description": "Deep work: complete deliverables, scripts, multi-file work, SOPs, full proposals, audits, modules, meeting analysis.",
+      "keywords": ["implement", "build", "create system", "script", "automate", "multifile", "audit", "refactor", "skill", "command", "sop", "complete proposal", "workspace", "tests", "validate code", "complete deliverable", "complete module", "process meetings", "playbook", "restructure", "deep work"],
+      "context_pack": [".claude/context/system.md", ".claude/context/tools.md", ".claude/context/permissions-matrix.md"]
+    },
+    {
+      "route": "librarian",
+      "owner": "Librarian",
+      "permission": "L0-L1",
+      "description": "Knowledge, research, notes, connections, ideas, learning.",
+      "keywords": ["research", "investigate", "note", "idea", "learning", "connect", "summary", "book", "paper", "youtube", "digest", "obsidian"],
+      "context_pack": ["${VAULT_NAME}/02. Areas/learning/Learning.md", "${VAULT_NAME}/02. Areas/research/Research.md"]
+    },
+    {
+      "route": "techy",
+      "owner": "Techy",
+      "permission": "L1-L4",
+      "description": "Technical system, agents, automations, integrations, debugging, configs, scripts.",
+      "keywords": ["api", "integration", "bug", "error", "debug", "gateway", "telegram", "fireflies", "notion api", "config", "cron", "mcp", "agent", "automation"],
+      "context_pack": [".claude/context/system.md", ".claude/context/tools.md", ".claude/context/permissions-matrix.md"]
+    },
+    {
+      "route": "reviewer",
+      "owner": "Reviewer",
+      "permission": "L0-L1",
+      "description": "Accountability, focus, difficult decisions, personal patterns, energy.",
+      "keywords": ["what should i do", "focus", "blocked", "procrastinat", "decision", "difficult", "energy", "priority", "top 2", "struggling", "avoiding", "clarity"],
+      "context_pack": ["${VAULT_NAME}/02. Areas/personal/Personal.md", "${VAULT_NAME}/02. Areas/personal/memory.md"]
+    },
+    {
+      "route": "meeting_processor",
+      "owner": "Meeting processor + domain owner",
+      "permission": "L1-L3",
+      "description": "Processing of Fireflies meetings/transcripts and action items.",
+      "keywords": ["fireflies", "transcript", "meeting", "action items", "call", "recording"],
+      "context_pack": ["${VAULT_NAME}/00. Inbox/fireflies", ".claude/context/source-of-truth-map.md"]
+    },
+    {
+      "route": "selenia_manual",
+      "owner": "Selenia",
+      "permission": "L1",
+      "description": "Nightly/manual review, logs, Telegram signals, reports, proposed improvements.",
+      "keywords": ["selenia", "nightly", "nightly review", "logs", "what happened", "report", "system errors", "telegram signals"],
+      "context_pack": [".claude/logs/executions", ".claude/logs/telegram", ".claude/context/permissions-matrix.md"]
+    },
+    {
+      "route": "hermes_direct",
+      "owner": "Hermes/Esbirrillo",
+      "permission": "L0-L1",
+      "description": "Quick response, synthesis, simple decision, next physical action, coordination.",
+      "keywords": ["quick", "short summary", "tell me", "explain", "next action", "help me decide", "prioritize"],
+      "context_pack": []
+    }
+  ],
+  "permission_escalation_keywords": {
+    "L3": ["send", "publish", "ship", "final email", "invoice sent", "dm", "broadcast", "client will see", "third party"],
+    "L4": ["delete", "wipe", "deploy", "push", "force", "payment", "transfer", "secret", "api key", "mass", "irreversible"]
+  }
+}

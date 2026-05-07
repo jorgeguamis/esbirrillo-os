@@ -1,0 +1,105 @@
+# Notion DB Registry
+
+> Per-user file. Filled by `/setup-wizard connect-tools` when it creates/connects Notion DBs in the user's workspace.
+
+## How Notion is wired
+
+This system uses Notion as the **operational layer** (CRM, tasks, finance, habits). The vault (Obsidian) holds knowledge; Notion holds operations.
+
+For Notion access, MCP servers are configured in `.mcp.json` and tool calls use the `mcp__notion__*` namespace.
+
+If the user has multiple Notion workspaces (e.g. personal + organizational), each workspace gets its own MCP server (`notion`, `notion-orgname`, etc.). Tool prefixes change accordingly. **Never mix prefixes** — different MCPs see different content.
+
+## Notion API syntax (quick ref)
+
+```
+# Search
+notion-search: query "Name"
+
+# Query DB
+notion-database-query: database_id "UUID"
+
+# Update page
+notion-update-page: page_id "UUID" + properties
+
+# Create page
+notion-create-pages: parent database_id + properties
+```
+
+> Use `data_source_id` (collection://...), not `database_id`, for queries — this is required since Notion API 2025-09-03.
+
+---
+
+## DBs registered for this user
+
+> Filled by `/setup-wizard`. The wizard will create standard DBs in the user's workspace (Tasks, Habits, Expenses, Incomes, optional CRM) and register their IDs here.
+
+### Operations
+
+| DB | data_source_id | Use |
+|----|---------------|-----|
+| Tasks | `{{NOTION_DB_TASKS}}` | Tasks across projects/areas |
+| Projects | `{{NOTION_DB_PROJECTS}}` | Projects associated to areas |
+| Habits | `{{NOTION_DB_HABITS}}` | Daily habit tracking |
+| Goals & Objectives | `{{NOTION_DB_GOALS}}` | Annual / quarterly goals |
+| Areas | `{{NOTION_DB_AREAS}}` | Life areas |
+
+### Finance (optional)
+
+| DB | data_source_id | Use |
+|----|---------------|-----|
+| Accounts | `{{NOTION_DB_ACCOUNTS}}` | Bank accounts and cards |
+| Expenses | `{{NOTION_DB_EXPENSES}}` | Expenses |
+| Incomes | `{{NOTION_DB_INCOMES}}` | Incomes |
+| Transfers | `{{NOTION_DB_TRANSFERS}}` | Internal transfers |
+
+### CRM (optional, if user has a sales pipeline)
+
+| DB | data_source_id | Use |
+|----|---------------|-----|
+| Companies | `{{NOTION_DB_CRM_COMPANIES}}` | CRM master |
+| Contacts | `{{NOTION_DB_CRM_CONTACTS}}` | People |
+| Notes | `{{NOTION_DB_CRM_NOTES}}` | Meeting notes / interactions |
+
+### Knowledge (optional)
+
+| DB | data_source_id | Use |
+|----|---------------|-----|
+| Notes | `{{NOTION_DB_NOTES}}` | Notes ground from vault |
+| Notebooks | `{{NOTION_DB_NOTEBOOKS}}` | Themed notebooks |
+| Books | `{{NOTION_DB_BOOKS}}` | Books read |
+
+### Domain-specific (per business)
+
+For each business the user has, create a section here with the relevant DBs (project tracker, content calendar, KPIs, etc.). The wizard `create-my-agent` will build the domain agent that references these.
+
+```
+{{USER_DOMAIN_DBS}}
+```
+
+---
+
+## User Notion identifiers
+
+```
+User Notion user ID: {{NOTION_USER_ID}}
+Primary workspace:   {{NOTION_PRIMARY_WORKSPACE}}
+```
+
+## Vault paths (per-user)
+
+```
+Daily notes:   02. Areas/personal/diario/01. Daily/DD-MM-YYYY.md
+Weekly:        02. Areas/personal/diario/02. Weekly/YYYY-Www.md
+Monthly:       02. Areas/personal/diario/03. Monthly/YYYY-MM.md
+Quarterly:     02. Areas/personal/diario/04. Quarterly/YYYY-Qn.md
+Annual:        02. Areas/personal/diario/05. Annual/YYYY.md
+```
+
+## Deprecated / archived DBs
+
+> List here any DB the wizard registers but the user has explicitly archived or deprecated. Useful so agents don't try to write to them.
+
+```
+{{NOTION_DEPRECATED_DBS}}
+```

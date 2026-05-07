@@ -1,0 +1,185 @@
+# Tools Reference — Life OS
+
+> Notas operativas sobre herramientas y sus sintaxis correctas.
+> Adaptado de OpenClaw workspace/TOOLS.md para Claude Code.
+
+---
+
+## Notion MCP
+
+### Sintaxis correcta (Claude Code)
+
+```
+# Buscar paginas/DBs
+notion-search: "query"
+
+# Leer pagina o DB
+notion-fetch: page_id o database_id
+
+# Query DB con filtros
+notion-database-query: database_id + filters
+
+# Crear pagina en DB
+notion-create-pages: parent_id + properties
+
+# Actualizar pagina
+notion-update-page: page_id + properties
+```
+
+### Errores comunes (de OpenClaw — no repetir)
+- NO usar `database_id` donde pide `data_source_id` (y viceversa)
+- Los IDs incorrectos estan en `.claude/context/notion-registry.md` → seccion "IDs INCORRECTOS"
+
+### CRM: actualizar Outreach Status
+```
+Usar notion-update-page con:
+  property: "Outreach Status"
+  value: "Discovery Booked" (o el stage que corresponda)
+
+Stages validos: Not Contacted → 1st-6th TP → En Conversacion → Discovery Booked
+→ Closing Booked → Send Proposal → Negotiations/Pending Payment → Closed Won/Lost
+```
+
+---
+
+## Fireflies MCP
+
+### Workflow correcto
+1. Buscar el nombre exacto del meeting en Google Calendar
+2. Buscar ese nombre en Fireflies: `fireflies_search(query: "nombre exacto")`
+3. Obtener summary: `fireflies_get_summary(transcriptId: "ID")`
+
+### Herramientas disponibles
+```
+fireflies_search         - Buscar meetings por keyword, fecha, participante
+fireflies_get_transcript - Transcripcion completa por ID
+fireflies_get_summary    - Summary con keywords y action items
+fireflies_get_transcripts - Listar meetings recientes
+```
+
+### Filtrar por fecha
+```
+fireflies_search: query "from:2026-02-11 to:2026-02-12"
+fireflies_search: query "nombre cliente"
+```
+
+---
+
+## Google Calendar / Workspace
+
+### 3 cuentas de Jorge
+```
+jorge@360consulting.io       → Reuniones 360, calls con clientes
+jorge.guamis@revolutia.ai   → Clases Revolutia, calls equipo
+jorgeguamis@gmail.com       → Personal, vida privada
+```
+
+### Estado Hermes actual
+- Los MCPs `google-workspace`, `google-workspace-revolutia` y `google-workspace-personal` conectan, pero en Hermes pueden fallar por `output schema`.
+- Fallback operativo recomendado: `/Users/jorgeguamis/Desktop/.claude/scripts/google_api.py`.
+- Perfiles directos:
+  - 360: `~/.hermes/google_token.json`
+  - Revolutia: `HERMES_GOOGLE_PROFILE=revolutia`
+  - Personal: `HERMES_GOOGLE_PROFILE=personal`
+
+### Nota importante (de OpenClaw TOOLS.md)
+- `--to` es EXCLUSIVO: para ver el dia 11, usar `from: 2026-02-11, to: 2026-02-12`
+
+---
+
+## Cal.com
+
+- **Perfil:** `cal.com/jorge-guamis-360`
+- **API base:** `https://api.cal.com/v2/`
+
+### Event types
+| Tipo | Slug | Duracion |
+|------|------|---------|
+| Diagnóstico 360º | `llamada-de-diagnostico-360º-consulting` | 45 min |
+| Seguimiento 360º | `llamada-de-seguimiento-360º-consulting` | 45 min |
+| Onboarding | `onboarding` | 45 min |
+| Diagnóstico Revolutia | `llamada-de-diagnostico-revolutia` | 45 min |
+| Seguimiento Revolutia | `llamada-de-seguimiento-revolutia` | 45 min |
+
+---
+
+## Rutas vault Obsidian
+
+```
+Vault base:     ~/Desktop/Life OS/
+Daily notes:    02. Areas/personal/diario/01. Daily/DD-MM-YYYY.md
+Weekly:         02. Areas/personal/diario/02. Weekly/YYYY-Www.md
+Monthly:        02. Areas/personal/diario/03. Monthly/YYYY-MM.md
+Quarterly:      02. Areas/personal/diario/04. Quarterly/YYYY-Qn.md
+
+Clientes 360:   02. Areas/business_360/clientes/
+  Pipeline:     02. Areas/business_360/clientes/leads (pipeline)/[Empresa]/
+  Activos:      02. Areas/business_360/clientes/activos/
+  Archivo:      02. Areas/business_360/clientes/archivo/
+
+Facturas:       02. Areas/business_360/facturas/
+Inbox:          00. Inbox/
+Templates:      03. Sistema/templates/
+```
+
+### Formato fecha daily notes
+```
+DD-MM-YYYY (NO YYYY-MM-DD)
+Ejemplo: 25-02-2026.md  ← correcto
+         2026-02-25.md  ← INCORRECTO en Life OS
+```
+
+---
+
+## Playwright MCP (Circle, web automation)
+
+- Disponible via MCP configurado
+- Usar para: Circle community scraping, web actions que no tienen API
+- Siempre confirmar antes de POST/envio publico
+
+---
+
+## NotebookLM MCP
+
+### Estado Hermes actual
+- MCP `notebooklm` está migrado y habilitado.
+- `hermes mcp test notebooklm` conecta y descubre herramientas.
+- Smoke real `get_health`: **DEGRADED** si no hay auth Google activa.
+- Para usarlo de verdad, ejecutar `setup_auth` desde una sesión con toolset `notebooklm` y completar login Google.
+
+### Herramientas disponibles (perfil standard)
+
+| Tool | Descripción |
+|------|-------------|
+| `ask_question` | Preguntar al notebook activo (respuestas con citas de fuentes) |
+| `list_notebooks` | Ver notebooks guardados en la librería |
+| `select_notebook` | Activar un notebook para queries |
+| `get_notebook` | Detalles del notebook actual |
+| `add_notebook` | Guardar notebook con tags y descripción |
+| `update_notebook` | Modificar tags/descripción |
+| `search_notebooks` | Buscar notebooks por keyword/tag |
+| `setup_auth` | Inicializar autenticación Google |
+| `list_sessions` | Ver sesiones activas |
+| `get_health` | Estado del servicio |
+
+### Workflow típico
+1. Crear notebook en notebooklm.google.com con fuentes (PDFs, URLs, YouTube)
+2. Compartir notebook (Settings → Share → Anyone with link)
+3. Desde Claude: "Add [link] to library tagged 'tema, subtema'"
+4. Seleccionar notebook: "Use the [nombre] notebook"
+5. Preguntar: "Ask NotebookLM: ¿cuáles son los frameworks principales?"
+
+### Notas importantes
+- Usa Chrome automation (Puppeteer), requiere Chrome instalado
+- Free tier tiene límite diario de queries
+- Respuestas SOLO de las fuentes subidas (no inventa)
+- Recomendado: cuenta Google dedicada para evitar detección
+
+---
+
+## Safety Defaults
+
+- `trash` > `rm` — siempre recuperable
+- No ejecutar comandos destructivos sin confirmar
+- No enviar emails/mensajes publicos sin aprobacion explicita
+- Datos de clientes = confidencial, no exponer en outputs publicos

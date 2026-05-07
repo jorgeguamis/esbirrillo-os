@@ -2,7 +2,7 @@
 
 Sistema agéntico personal replicable. Un orquestador siempre-on en Telegram + skills + agentes + vault, que se autoconfigura para cada usuario mediante onboarding agéntico.
 
-> **Status:** v0 en construcción. Primer caso 0: Juan Santacruz (CEO Revolutia), ETA 8 semanas.
+> **Status:** v0 en construcción. Primer caso 0 en curso, ETA 8 semanas.
 
 ## Qué es esto
 
@@ -82,7 +82,7 @@ TBD. Probablemente MIT (alineado con Hermes-agent). El contenido del kit (skills
 
 ## Roadmap
 
-- v0 (sem 1-3): kit base + onboarding agéntico testeado con perfil sintético.
-- v0.1 (sem 4-8): caso 0 con Juan Santacruz.
-- v0.5 (mes 3-6): caso 1+ (post-intro al tío).
-- v1 (mes 6+): producto vendible — onboarding pulido, multi-stack, casos públicos.
+- v0: kit base + onboarding agéntico (Capa 1-4 completa).
+- v0.1: caso 0 supervisado en producción real.
+- v0.5: casos 1-N tras retroalimentación del primer deploy.
+- v1: producto pulido — onboarding refinado, multi-stack, casos públicos.

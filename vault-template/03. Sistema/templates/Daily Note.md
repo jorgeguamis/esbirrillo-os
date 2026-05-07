@@ -41,7 +41,7 @@ energy-evening:
 
 ---
 
-## 💼 Business - 360º Consulting
+## 💼 Business - Business 1 Consulting
 
 **Main focus today:**
 
@@ -51,7 +51,7 @@ energy-evening:
 
 ---
 
-## 📚 Business - Revolutia Academy
+## 📚 Business - Business 2 Academy
 
 **Main focus today:**
 
@@ -155,8 +155,8 @@ energy-evening:
 | Energy level (avg) | /10 | Morning + Evening |
 | TOP 2 completion | /2 | Daily checkpoint |
 | Habits completed | /16 | Notion sync |
-| Revenue activities (360º) | | |
-| Vision work (Revolutia) | | |
+| Revenue activities (Business 1) | | |
+| Vision work (Business 2) | | |
 
 ---
 

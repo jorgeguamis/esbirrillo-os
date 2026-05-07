@@ -62,8 +62,8 @@ date: {{date:DD-MM-YYYY}}
 
 ### Time Allocation (from Calendar)
 **Meeting hours by area:**
-- 360º Consulting: X hours (Y% of week)
-- Revolutia Academy: X hours (Y% of week)
+- Business 1: X hours (Y% of week)
+- Business 2: X hours (Y% of week)
 - Personal: X hours (Y% of week)
 - **Total meetings:** X hours (Y% of 40-hour work week)
 
@@ -73,11 +73,11 @@ date: {{date:DD-MM-YYYY}}
 - [etc.]
 
 ### Key Meetings This Week (from Fireflies)
-**360º Client Calls:** X calls, X total hours
+**Business 1 Client Calls:** X calls, X total hours
 - [Client 1]: [Date], [Duration] - [AI summary keyword]
 - [Client 2]: [Date], [Duration] - [AI summary keyword]
 
-**Revolutia Workshops/Calls:** X events, X total hours
+**Business 2 Workshops/Calls:** X events, X total hours
 - [Workshop 1]: [Date], [Duration]
 
 **Strategic/Internal:** X meetings, X total hours
@@ -100,9 +100,9 @@ date: {{date:DD-MM-YYYY}}
 
 **Your reflection - What created REAL progress?**
 
-**360º:**
+**Business 1:**
 
-**Revolutia:**
+**Business 2:**
 
 **Personal:**
 
@@ -146,7 +146,7 @@ date: {{date:DD-MM-YYYY}}
 
 ## 💼 Part 3: Business Health Check
 
-### 360º Consulting
+### Business 1
 
 **This Week Metrics (AI-populated from context + daily notes):**
 - Active clients: [Names from daily notes]
@@ -162,12 +162,12 @@ date: {{date:DD-MM-YYYY}}
 
 ---
 
-### Revolutia Academy
+### Business 2
 
 **This Week Metrics (AI-populated from context + daily notes):**
-- Internal projects worked on: [From daily notes Business-Revolutia section]
+- Internal projects worked on: [From daily notes Business-2 section]
 - Vision/strategy time: [Hours if measurable]
-- Partnership health: [Mentions of Juan, strategic discussions]
+- Partnership health: [Mentions of partners, strategic discussions]
 - Live class delivered: [If any - 1/month typical]
 
 **Your reflection:**
@@ -186,7 +186,7 @@ date: {{date:DD-MM-YYYY}}
 <!-- AI compares context files (stated priorities) to daily notes (actual time) -->
 
 **From context files - Your stated TOP 3 priorities across all areas:**
-1. [Priority from Personal/360/Revolutia/Health/Learning/Finances/Research contexts]
+1. [Priority from Personal/360/Business 2/Health/Learning/Finances/Research contexts]
 2. [Priority]
 3. [Priority]
 

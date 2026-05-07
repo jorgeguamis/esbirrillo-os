@@ -44,7 +44,7 @@
 
 **Path B — Claude Code + plugin Telegram (lite)**
 - Stack: solo Claude Code CLI con plugin official
-- Lanza launchd `com.jorgeguamis.claude-telegram.plist`
+- Lanza launchd `com.<user>.claude-telegram.plist`
 - Capacidades: chat Telegram, sin scheduler nativo (depende de CronCreate de Claude Code)
 
 El kit instala uno u otro según preferencia del usuario.
@@ -99,7 +99,7 @@ Skills que entran al kit (lista completa en `audit/report.md`):
 
 Commands: `/morning` `/reflect` `/process-meeting` `/capture` `/knowledge-digest` `/weekly-review` `/monthly-review` `/quarterly-review` `/digital-cleanup` `/process-inbox` `/route-task` `/helios-healthcheck` `/selenia-nightly` `/telegram-signal` `/approval-item` `/update-context`.
 
-**No entran al kit:** skills/commands específicos del autor (360º Consulting, Revolutia, Monk).
+**No entran al kit:** skills/commands específicos del autor (sus negocios, sus clientes, sus DBs).
 
 ## Capa 3 — Agentes core (4 universales)
 
@@ -110,7 +110,7 @@ Commands: `/morning` `/reflect` `/process-meeting` `/capture` `/knowledge-digest
 | **techy** | Sistema, config, scripts, automatización. | many |
 | **reviewer** | Patterns, accountability, reviews. | jorge agent |
 
-Estos agentes son universales — aplican a cualquier usuario. Stark/Penny/Revo/Shakes NO entran (los crea Capa 4 según necesidad).
+Estos agentes son universales — aplican a cualquier usuario. Los agentes de dominio (sales, finance, product, copy, etc.) NO entran al kit; los construye Capa 4 según necesidad de cada usuario.
 
 ## Capa 4 — Onboarding agéntico
 

@@ -82,7 +82,7 @@ Lee de state: nombre, rol, modelo, métrica, % tiempo. Confirma con el usuario:
    "¿qué hago hoy en {{business_name}}?".
 
 2. ¿Tiene un nombre/personalidad este agente? (puede ser un nombre real
-   tipo "Stark", o solo descriptivo tipo "ceo-saas-acme"). Importa porque
+   tipo un nombre propio, o solo descriptivo tipo "ceo-saas-acme"). Importa porque
    será el chat_id Telegram que recibirá los mensajes.
 
 3. ¿Idioma del agente? Default = idioma del usuario, pero quizá tu equipo

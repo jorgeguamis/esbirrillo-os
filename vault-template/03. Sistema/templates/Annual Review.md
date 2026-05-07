@@ -54,10 +54,10 @@ List 10-15 moments from this year that stand out:
 
 ### Major Milestones
 
-**360º Degrees:**
+**Business 1 Degrees:**
 -
 
-**Revolutia:**
+**Business 2:**
 -
 
 **Personal:**
@@ -87,7 +87,7 @@ List 10-15 moments from this year that stand out:
 
 ## Part 2: Business Performance
 
-### 360º Degrees Consulting
+### Business 1
 
 **Annual Revenue:** $
 **Target:** $
@@ -107,7 +107,7 @@ List 10-15 moments from this year that stand out:
 
 ---
 
-### Revolutia Academy
+### Business 2
 
 **Annual Revenue:** $
 **Target:** $
@@ -146,8 +146,8 @@ Reference [[02. Areas/personal/frameworks/life-map|Life Map]]
 
 | Pillar | End of Year | Start of Year | Change | Key Moments |
 |--------|-------------|---------------|--------|-------------|
-| 💼 Career (360º) | | | | |
-| 📚 Career (Revolutia) | | | | |
+| 💼 Career (Business 1) | | | | |
+| 📚 Career (Business 2) | | | | |
 | ❤️ Relationships | | | | |
 | 💪 Health | | | | |
 | 💰 Finances | | | | |
@@ -200,8 +200,8 @@ Reference [[02. Areas/personal/objetivos/1-year|Last Year's Goals]]
 
 | Metric | {{date:YYYY}} | Target | Gap |
 |--------|------|--------|-----|
-| Revenue (360º) | | | |
-| Revenue (Revolutia) | | | |
+| Revenue (Business 1) | | | |
+| Revenue (Business 2) | | | |
 | Total Income | | | |
 | Total Expenses | | | |
 | Net Profit | | | |
@@ -401,8 +401,8 @@ See [[02. Areas/personal/objetivos/1-year|1-Year Goals]] document for detailed g
 - [ ] [[02. Areas/personal/frameworks/vivid-vision|Vivid Vision]] - rewrite 3-year vision
 - [ ] [[02. Areas/personal/frameworks/life-map|Life Map]] - complete fresh map
 - [ ] [[02. Areas/personal/frameworks/ideal-life-costing|Ideal Life Costing]] - update if needed
-- [ ] [[360º Consulting_Context|360º Context]] - update business state
-- [ ] [[Revolutia_Context|Revolutia Context]] - update business state
+- [ ] [[Business 1_Context|Business 1 Context]] - update business state
+- [ ] [[Business 2_Context|Business 2 Context]] - update business state
 - [ ] Add key patterns to memory
 
 ---
@@ -440,8 +440,8 @@ See [[02. Areas/personal/objetivos/1-year|1-Year Goals]] document for detailed g
 | Total Revenue | | | |
 | Net Profit | | | |
 | Net Worth | | | |
-| Clients (360º) | | | |
-| Students (Revolutia) | | | |
+| Clients (Business 1) | | | |
+| Students (Business 2) | | | |
 | Life Map Average | | | |
 
 ---

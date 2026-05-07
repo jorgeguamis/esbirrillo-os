@@ -42,7 +42,7 @@ date:
 
 Reference your [[02. Areas/personal/objetivos/1-year|1-year goals]]
 
-### 360º Degrees Goals
+### Business 1 Goals
 
 | Goal | Status | Evidence | What's Working | What's Blocking |
 |------|--------|----------|----------------|-----------------|
@@ -51,7 +51,7 @@ Reference your [[02. Areas/personal/objetivos/1-year|1-year goals]]
 
 ---
 
-### Revolutia Goals
+### Business 2 Goals
 
 | Goal | Status | Evidence | What's Working | What's Blocking |
 |------|--------|----------|----------------|-----------------|
@@ -81,7 +81,7 @@ Reference your [[02. Areas/personal/objetivos/1-year|1-year goals]]
 
 ## Part 2: Business Performance
 
-### 360º Degrees Consulting
+### Business 1
 
 **Q{{date:Q}} Revenue:** $
 **Target:** $
@@ -104,7 +104,7 @@ Reference your [[02. Areas/personal/objetivos/1-year|1-year goals]]
 
 ---
 
-### Revolutia Academy
+### Business 2
 
 **Q{{date:Q}} Revenue:** $
 **Target:** $
@@ -199,8 +199,8 @@ Reference [[02. Areas/personal/frameworks/life-map|Life Map]]
 
 | Pillar | Q{{date:Q}} Rating | Last Quarter | Trend | Notes |
 |--------|-------|--------------|-------|-------|
-| 💼 Career (360º) | | | | |
-| 📚 Career (Revolutia) | | | | |
+| 💼 Career (Business 1) | | | | |
+| 📚 Career (Business 2) | | | | |
 | ❤️ Relationships | | | | |
 | 💪 Health | | | | |
 | 💰 Finances | | | | |
@@ -230,8 +230,8 @@ Reference [[02. Areas/personal/frameworks/life-map|Life Map]]
 
 | Metric | Q{{date:Q}} | Target | Gap |
 |--------|---------|--------|-----|
-| Revenue (360º) | | | |
-| Revenue (Revolutia) | | | |
+| Revenue (Business 1) | | | |
+| Revenue (Business 2) | | | |
 | Total Income | | | |
 | Total Expenses | | | |
 | Net Profit | | | |
@@ -372,8 +372,8 @@ What outcome would make you say "that was a wasted quarter"?
 - [ ] Update [[_Dashboard|Dashboard]]
 - [ ] Update [[02. Areas/personal/Personal|Personal Context]] if priorities shifted
 - [ ] Update [[02. Areas/personal/objetivos/Objetivos 2026|1-Year Goals]]
-- [ ] Update [[360º Consulting|360º Context]]
-- [ ] Update [[02. Areas/business_revolutia/Revolutia|Revolutia Context]]
+- [ ] Update [[Business 1|Business 1 Context]]
+- [ ] Update [[02. Areas/business_2/Business 2|Business 2 Context]]
 - [ ] Update [[02. Areas/personal/frameworks/life-map|Life Map]]
 - [ ] Add patterns to memory
 
@@ -413,8 +413,8 @@ What outcome would make you say "that was a wasted quarter"?
 |--------|---------|---------|-------|
 | Total Revenue | | | |
 | Net Profit | | | |
-| Active Clients (360º) | | | |
-| Active Students (Revolutia) | | | |
+| Active Clients (Business 1) | | | |
+| Active Students (Business 2) | | | |
 | Energy Average (1-10) | | | |
 | Health Score (1-10) | | | |
 | Life Map Average | | | |

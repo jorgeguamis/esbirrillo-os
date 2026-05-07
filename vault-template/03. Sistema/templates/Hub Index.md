@@ -103,7 +103,7 @@ LIMIT 10
 
 2. **Reemplaza [BUSINESS_TAG]:**
    - Para Business-360: `business/360`
-   - Para Business-Revolutia: `business/revolutia`
+   - Para Business-Business 2: `business/revolutia`
    - Para Personal/Health/etc.: Elimina la query de "Related Atomic Notes" o ajusta el filtro
 
 3. **Ajusta las secciones según el área:**

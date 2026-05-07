@@ -46,7 +46,7 @@ ADRs (Architectural Decision Records) lite. Cada decisión: contexto + opciones 
 
 **Razones:**
 - Telegram: gratis, soporte multi-grupo (un grupo por agente), API estable, soportado nativamente por Hermes-agent.
-- WhatsApp Business requiere número dedicado + setup mayor + costes. Probablemente lo que pida el tío en el upsell.
+- WhatsApp Business requiere número dedicado + setup mayor + costes. Probable upsell para usuarios enterprise.
 
 ---
 
@@ -77,44 +77,29 @@ ADRs (Architectural Decision Records) lite. Cada decisión: contexto + opciones 
 
 ---
 
-## D6 — Modelo de entrega Juan
+## D6 — Plazos del primer caso
 
 **Fecha:** 2026-05-07
 
-**Decisión:** **Sin pago. Apuesta al tío + casos futuros.**
-
-**Razones:**
-- Juan es producto, no cliente.
-- Caso de éxito mostrable al tío (CEO empresas grandes).
-- Validación máxima del producto antes de monetizar.
-- Mitigación: term sheet ligero con compromiso de uso 5d/sem + intro cualificada al tío + 15% revenue share.
-
----
-
-## D7 — Plazos
-
-**Fecha:** 2026-05-07
-
-**Decisión:** **8 semanas:** 1 audit + 2 build + 1 test interno + 4 con Juan.
+**Decisión:** **8 semanas:** auditoría + build + test interno + 4 semanas con primer usuario real.
 
 **Razones:**
 - Discovery sólido evita re-trabajo.
-- Test interno con perfil sintético (sem 3) antes de tocar a Juan.
-- 4 semanas con Juan permiten medir adopción real, no solo setup.
+- 4 semanas con usuario real permiten medir adopción, no solo setup.
 
 ---
 
-## D8 — Capa 4 (Onboarding agéntico) vs fork manual
+## D7 — Capa 4 (Onboarding agéntico) vs fork manual
 
 **Fecha:** 2026-05-07
 
-**Contexto:** Plan inicial proponía "personalizar el sistema del autor para Juan" (fork manual). Refinement: el sistema es replicable solo si la personalización es agéntica.
+**Contexto:** Plan inicial proponía un fork manual personalizando el sistema fuente para cada usuario. Refinement: el sistema es replicable solo si la personalización es agéntica.
 
 **Decisión:** **Capa 4 — onboarding agéntico (`/setup-wizard`).** Construir 7 sub-skills que entrevistan al usuario y generan Capa 5 desde cero.
 
 **Razones:**
 - Hace el sistema replicable a N usuarios sin re-trabajo del autor.
 - El usuario tiene SUS agentes (no copia de los del autor).
-- Validación temprana: si el wizard funciona con perfil sintético en sem 3, el path al tío es defensible.
+- Validación temprana del enfoque antes de escalar a más casos.
 
-**Riesgo asumido:** complejidad mayor en sem 2-3. Fallback: si Capa 4 no llega a tiempo, fallback a discovery manual asistido en sem 4 con Juan.
+**Riesgo asumido:** complejidad mayor en la fase de build. Fallback: discovery manual asistido si la Capa 4 no madura a tiempo.

@@ -141,7 +141,7 @@ If Personal/Health/Finances/Learning/Research → no business tag (or ask)
 
 **File naming:**
 - Business-Primary → `Hub_360-Consulting.md`
-- Business-{{BUSINESS_SECONDARY}} → `Hub_Revolutia.md`
+- Business-{{BUSINESS_SECONDARY}} → `Hub_Business2.md`
 - Personal → `Hub_Personal.md`
 - Health → `Hub_Health.md`
 - Finances → `Hub_Finances.md`

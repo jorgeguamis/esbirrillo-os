@@ -42,7 +42,7 @@ What happened? What changed? What defined this month?
 
 ## Part 1: Business Review
 
-### 360º Degrees Consulting
+### Business 1
 
 **Revenue this month:** $
 **Target:** $
@@ -74,7 +74,7 @@ $
 
 ---
 
-### Revolutia Academy
+### Business 2
 
 **Revenue this month:** $
 **Target:** $
@@ -112,8 +112,8 @@ Rate each pillar for this month (1-10):
 
 | Pillar | Rating | Last Month | Trend | Notes |
 |--------|--------|------------|-------|-------|
-| 💼 Career (360º) | | | | |
-| 📚 Career (Revolutia) | | | | |
+| 💼 Career (Business 1) | | | | |
+| 📚 Career (Business 2) | | | | |
 | ❤️ Relationships | | | | |
 | 💪 Health | | | | |
 | 💰 Finances | | | | |
@@ -132,7 +132,7 @@ Rate each pillar for this month (1-10):
 
 ## Part 3: Goals Progress
 
-### 360º Goals
+### Business 1 Goals
 
 | Goal | Progress | On Track? | Notes |
 |------|----------|-----------|-------|
@@ -141,7 +141,7 @@ Rate each pillar for this month (1-10):
 
 ---
 
-### Revolutia Goals
+### Business 2 Goals
 
 | Goal | Progress | On Track? | Notes |
 |------|----------|-----------|-------|
@@ -237,8 +237,8 @@ List areas where you actually moved the needle:
 
 ### Income
 
-**360º:** $
-**Revolutia:** $
+**Business 1:** $
+**Business 2:** $
 **Other:** $
 **Total:** $
 
@@ -409,8 +409,8 @@ List areas where you actually moved the needle:
 ### Update these documents based on this review:
 
 - [ ] Update [[_Dashboard|Dashboard]] with latest status
-- [ ] Update [[360º Consulting_Context|360º Context]] if business changed
-- [ ] Update [[Revolutia_Context|Revolutia Context]] if needed
+- [ ] Update [[Business 1_Context|Business 1 Context]] if business changed
+- [ ] Update [[Business_2_Context|Business 2 Context]] if needed
 - [ ] Update [[02. Areas/personal/objetivos/1-year|Goals]] if priorities shifted
 - [ ] Review [[02. Areas/personal/frameworks/life-map|Life Map]]
 
@@ -438,8 +438,8 @@ List areas where you actually moved the needle:
 
 | Metric | This Month | Last Month | Trend |
 |--------|------------|------------|-------|
-| Revenue (360º) | | | |
-| Revenue (Revolutia) | | | |
+| Revenue (Business 1) | | | |
+| Revenue (Business 2) | | | |
 | Total Income | | | |
 | Deep Work Hours | | | |
 | Energy Average | | | |

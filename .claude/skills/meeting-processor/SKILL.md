@@ -100,7 +100,7 @@ Por cada tarea identificar: título, contexto (por qué surgió), responsable re
 **Criterios responsable:**
 - "Yo me encargo" → quien habla
 - "{{USER_FIRSTNAME}}, haz X" / "tú haces X" → {{USER_FIRSTNAME}}
-- "Juan lo mira" / "Alejandro se encarga" → NO es de {{USER_FIRSTNAME}}
+- "Pedro lo mira" / "Alejandro se encarga" → NO es de {{USER_FIRSTNAME}}
 - Sin claridad → marcar ❓ y preguntar
 
 ### ⚠️ CONFIRMACIÓN OBLIGATORIA antes de crear en Notion
@@ -114,7 +114,7 @@ Por cada tarea identificar: título, contexto (por qué surgió), responsable re
 
 🔵 TAREAS DE OTROS (solo info, NO se crean):
 3. Revisar métricas churn → Alejandro
-4. Deploy feature → Juan
+4. Deploy feature → Pedro
 
 ❓ SIN ASIGNAR:
 5. Actualizar documentación API

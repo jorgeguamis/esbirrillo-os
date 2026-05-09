@@ -1,8 +1,10 @@
 # Esbirrillo OS
 
+> **📐 Para la visión de producto, lee primero [`docs/PRODUCT-VISION.md`](./docs/PRODUCT-VISION.md).** Este README describe el scaffolding actual del repositorio; el PRD describe la visión hacia la que ese código debe converger.
+
 Sistema agéntico personal replicable. Un orquestador siempre-on en Telegram + skills + agentes + vault, que se autoconfigura para cada usuario mediante onboarding agéntico.
 
-> **Status:** v0 en construcción. Primer caso 0 en curso, ETA 8 semanas.
+> **Status:** v0 en construcción (scaffolding). El código actual es desechable: cuando el producto esté terminado, el scaffolding nos parecerá primitivo. Primer caso 0 en curso, ETA 8 semanas.
 
 ## Qué es esto
 
